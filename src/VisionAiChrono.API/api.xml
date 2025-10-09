@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VisionAiChrono.API</name>
+    </assembly>
+    <members>
+        <member name="T:VisionAiChrono.API.Controllers.AccountController">
+            <summary>
+            Manages user accounts, including registration, login, password reset, roles, and token handling.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.#ctor(VisionAiChrono.Application.ServiceContract.IAuthenticationServices,Microsoft.AspNetCore.Identity.UserManager{VisionAiChrono.Domain.Models.Identity.ApplicationUser},Microsoft.AspNetCore.Identity.UI.Services.IEmailSender,Microsoft.AspNetCore.Identity.SignInManager{VisionAiChrono.Domain.Models.Identity.ApplicationUser},VisionAiChrono.Domain.RepositoryContract.IUnitOfWork,Microsoft.AspNetCore.Identity.IPasswordHasher{VisionAiChrono.Domain.Models.Identity.ApplicationUser},Microsoft.Extensions.Logging.ILogger{VisionAiChrono.API.Controllers.AccountController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:VisionAiChrono.API.Controllers.AccountController"/> class.
+            </summary>
+            <param name="authenticationServices">Authentication service.</param>
+            <param name="userManager">User manager service.</param>
+            <param name="emailSender">Email sender service.</param>
+            <param name="signInManager">Sign-in manager service.</param>
+            <param name="unitOfWork">Unit of work service.</param>
+            <param name="passwordHasher">Password hasher service.</param>
+            <param name="logger">Logger instance for logging controller actions.</param>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.RegisterCleintAsync(VisionAiChrono.Application.Dtos.AuthenticationDtos.RegisterDTO)">
+            <summary>
+            Registers a new client account.
+            </summary>
+            <param name="registerDTO">Client registration details.</param>
+            <returns>Authentication response with token and status.</returns>
+            <response code="200">Client registered successfully.</response>
+            <response code="400">Invalid input or request.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.LoginAsync(VisionAiChrono.Application.Dtos.AuthenticationDtos.LoginDTO)">
+            <summary>
+            Logs in a user or company.
+            </summary>
+            <param name="loginDTO">Login credentials (email, password).</param>
+            <returns>Authentication response with token and status.</returns>
+            <response code="200">Login successful.</response>
+            <response code="400">Invalid credentials or input.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.DeleteAccount(System.Guid)">
+            <summary>
+            Deletes a user account and all related information permanently.
+            </summary>
+            <param name="userId">The unique identifier of the user to be deleted.</param>
+            <returns>A result indicating whether the deletion was successful.</returns>
+            <response code="200">User account deleted successfully.</response>
+            <response code="400">The provided user ID is invalid.</response>
+            <response code="404">No user found with the specified ID.</response>
+            <response code="500">An internal server error occurred.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.ForgotPassword(VisionAiChrono.Application.Dtos.AuthenticationDtos.ForgotPasswordDTO)">
+            <summary>
+            Sends a password reset OTP to the user's email.
+            </summary>
+            <param name="forgotPassword">Email to send the password reset link to.</param>
+            <returns>Status message.</returns>
+            <response code="200">Password reset OTP sent successfully.</response>
+            <response code="400">Invalid input.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.ResetPassword(VisionAiChrono.Application.Dtos.AuthenticationDtos.ResetPasswordDTO)">
+            <summary>
+            Resets the user's password using an OTP.
+            </summary>
+            <param name="resetPassword">Reset password request details, including OTP.</param>
+            <returns>Status message.</returns>
+            <response code="200">Password reset successfully.</response>
+            <response code="400">Invalid OTP or request.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.ChangePassword(VisionAiChrono.Application.Dtos.AuthenticationDtos.ChangePasswordRequest)">
+            <summary>
+            Changes the user's password.
+            </summary>
+            <param name="model">Change password request details.</param>
+            <returns>Status message.</returns>
+            <response code="200">Password changed successfully.</response>
+            <response code="400">Invalid current password.</response>
+            <response code="404">User not found.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.VerifyOtp(VisionAiChrono.Application.Dtos.AuthenticationDtos.OtpVerificationRequest)">
+            <summary>
+            Verifies the OTP code.
+            </summary>
+            <param name="request">OTP verification request.</param>
+            <returns>Status message.</returns>
+            <response code="200">OTP verified successfully.</response>
+            <response code="400">Invalid or expired OTP.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.RevokeToken(VisionAiChrono.Application.Dtos.AuthenticationDtos.RevokTokenDTO)">
+            <summary>
+            Revokes a refresh token.
+            </summary>
+            <param name="revokTokenDTO">Token details to revoke.</param>
+            <returns>Status message.</returns>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.AddRoleAsync(VisionAiChrono.Application.Dtos.AuthenticationDtos.AddRoleDto)">
+            <summary>
+            Adds a new role to the user.
+            </summary>
+            <param name="model">Role details to assign.</param>
+            <returns>Status message.</returns>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.IsEmailInUse(System.String)">
+            <summary>
+            Checks if the email is already in use.
+            </summary>
+            <param name="email">The email to check.</param>
+            <returns>True if the email is in use; otherwise, false.</returns>
+            <response code="200">Check successful, result returned.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.GetUserInfo(System.Guid)">
+            <summary>
+            Retrieves user information based on the provided user ID.
+            </summary>
+            <param name="userID">The unique identifier (GUID) of the user to retrieve.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing an <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> with the user details if found,
+            or a not found response if the user does not exist.
+            </returns>
+            <response code="200">Returns the user information when the user is found.</response>
+            <response code="404">Returned when no user matches the provided user ID.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.GetUsers">
+            <summary>
+            Retrieves all users from the system asynchronously.
+            </summary>
+            <remarks>
+            This endpoint logs the process of fetching users and returns an <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> containing the result.
+            If no users are found, a 404 Not Found response is returned; otherwise, a 200 OK response is returned with the list of users.
+            </remarks>
+            <returns>
+            A task that represents the asynchronous operation, containing an <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> with an <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/>.
+            The response includes a success flag, message, status code, and the list of users if successful.
+            </returns>
+            <response code="200">Returns the list of users when retrieval is successful.</response>
+            <response code="404">Returned when no users are found in the system.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.RefreshToken">
+            <summary>
+            Refreshes the user's authentication token.
+            </summary>
+            <returns>New authentication token.</returns>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AccountController.SetRefreshToken(System.String,System.DateTime)">
+            <summary>
+            Sets the refresh token cookie in the response.
+            </summary>
+            <param name="refreshToken">The refresh token string.</param>
+            <param name="expires">The expiration time for the token.</param>
+        </member>
+    </members>
+</doc>
