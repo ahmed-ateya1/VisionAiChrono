@@ -2,7 +2,7 @@
 {
     public class PipelineResult
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public Guid PipelineRunId { get; set; }
         public virtual PipelineRun PipelineRun { get; set; }
         public Guid VideoId { get; set; }

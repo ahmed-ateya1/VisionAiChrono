@@ -156,5 +156,158 @@
             <param name="refreshToken">The refresh token string.</param>
             <param name="expires">The expiration time for the token.</param>
         </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.GetAllAiModels(VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves all available AI models with pagination support.
+            </summary>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of AI models with pagination metadata.</returns>
+            <response code="200">AI models retrieved successfully.</response>
+            <response code="404">No AI models found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.GetAllByName(System.String,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves AI models filtered by name with pagination.
+            </summary>
+            <param name="name">The AI model name or part of it to filter by.</param>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of AI models matching the specified name.</returns>
+            <response code="200">AI models retrieved successfully.</response>
+            <response code="404">No AI models found matching the given name.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.GetAllByActive(System.Boolean,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves AI models filtered by their active status with pagination.
+            </summary>
+            <param name="isActive">Specifies whether to fetch active (true) or inactive (false) AI models.</param>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of AI models filtered by active status.</returns>
+            <response code="200">AI models retrieved successfully.</response>
+            <response code="404">No AI models found with the specified active status.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.GetAllByVersion(System.String,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves AI models filtered by version string with pagination.
+            </summary>
+            <param name="version">The version (or part of it) to filter AI models by.</param>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of AI models matching the specified version.</returns>
+            <response code="200">AI models retrieved successfully.</response>
+            <response code="404">No AI models found matching the specified version.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.GetById(System.Guid)">
+            <summary>
+            Retrieves a single AI model by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier (GUID) of the AI model to retrieve.</param>
+            <returns>The AI model that matches the specified ID.</returns>
+            <response code="200">AI model retrieved successfully.</response>
+            <response code="404">No AI model found with the specified ID.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.CreateAiModel(VisionAiChrono.Application.Dtos.AiModelDtos.ModelAddRequest)">
+            <summary>
+            Creates a new AI model.
+            </summary>
+            <param name="modelCreate">The details of the AI model to create.</param>
+            <returns>The newly created AI model.</returns>
+            <response code="200">AI model created successfully.</response>
+            <response code="400">Validation error occurred while creating the AI model.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.UpdateAiModel(VisionAiChrono.Application.Dtos.AiModelDtos.ModelUpdateRequest)">
+            <summary>
+            Updates an existing AI model.
+            </summary>
+            <param name="modelUpdate">The updated details of the AI model.</param>
+            <returns>The updated AI model.</returns>
+            <response code="200">AI model updated successfully.</response>
+            <response code="404">No AI model found with the specified ID.</response>
+            <response code="400">Validation error occurred while updating the AI model.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.AiModelController.DeleteAiModel(System.Guid)">
+            <summary>
+            Deletes an AI model by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier (GUID) of the AI model to delete.</param>
+            <returns>Boolean result indicating whether the deletion was successful.</returns>
+            <response code="200">AI model deleted successfully.</response>
+            <response code="404">No AI model found with the specified ID.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.GetPipelines(VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves all available pipelines with pagination support.
+            </summary>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of pipelines with pagination metadata.</returns>
+            <response code="200">Pipelines retrieved successfully.</response>
+            <response code="404">No pipelines found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.GetPipelineByTitle(System.String,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves pipelines filtered by title with pagination support.
+            </summary>
+            <param name="title">The pipeline title or part of it to filter by.</param>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of pipelines matching the specified title.</returns>
+            <response code="200">Pipelines retrieved successfully.</response>
+            <response code="404">No pipelines found matching the given title.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.GetPipelineById(System.Guid,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves a pipeline by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier (GUID) of the pipeline to retrieve.</param>
+            <param name="pagination">Pagination and sorting options (optional).</param>
+            <returns>The pipeline matching the specified ID.</returns>
+            <response code="200">Pipeline retrieved successfully.</response>
+            <response code="404">No pipeline found with the specified ID.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.GetPipelineByUid(System.Guid,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves all pipelines created by a specific user.
+            </summary>
+            <param name="uid">The unique identifier (GUID) of the user whose pipelines to retrieve.</param>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of pipelines created by the specified user.</returns>
+            <response code="200">Pipelines retrieved successfully.</response>
+            <response code="404">No pipelines found for the specified user.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.GetPipelineIsPublic(System.Boolean,VisionAiChrono.Application.Dtos.PaginationDto)">
+            <summary>
+            Retrieves pipelines filtered by public visibility (IsPublic).
+            </summary>
+            <param name="isPublic">Filter pipelines based on their visibility status.</param>
+            <param name="pagination">Pagination and sorting options.</param>
+            <returns>List of pipelines filtered by their IsPublic status.</returns>
+            <response code="200">Pipelines retrieved successfully.</response>
+            <response code="404">No pipelines found matching the visibility criteria.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.CreatePipeline(VisionAiChrono.Application.Dtos.PipelineDtos.PipelineAddRequest)">
+            <summary>
+            Creates a new pipeline.
+            </summary>
+            <param name="pipelineAdd">The pipeline data to be created.</param>
+            <returns>The created pipeline details.</returns>
+            <response code="200">Pipeline created successfully.</response>
+            <response code="400">Invalid input or failed to create the pipeline.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.UpdatePipeline(VisionAiChrono.Application.Dtos.PipelineDtos.PipelineUpdateRequest)">
+            <summary>
+            Updates an existing pipeline.
+            </summary>
+            <param name="pipelineUpdate">The updated pipeline details.</param>
+            <returns>The updated pipeline information.</returns>
+            <response code="200">Pipeline updated successfully.</response>
+            <response code="400">Invalid input or failed to update the pipeline.</response>
+            <response code="404">Pipeline not found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.PipelineController.DeletePipeline(System.Guid)">
+            <summary>
+            Deletes a pipeline by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the pipeline to delete.</param>
+            <returns>Success or failure response.</returns>
+            <response code="200">Pipeline deleted successfully.</response>
+            <response code="404">Pipeline not found.</response>
+        </member>
     </members>
 </doc>

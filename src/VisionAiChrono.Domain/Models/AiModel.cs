@@ -4,11 +4,11 @@ namespace VisionAiChrono.Domain.Models
 {
     public class AiModel
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; } 
         public string Description { get; set; }
         public string Version { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } 
         public string Endpoint { get; set; }
         public DateTime CreatedAt { get; set; }
 

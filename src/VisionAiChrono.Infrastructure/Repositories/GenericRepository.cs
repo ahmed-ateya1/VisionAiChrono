@@ -121,10 +121,13 @@ namespace VisionAiChrono.Infrastructure.Repositories
         public async Task<T> GetByAsync(Expression<Func<T, bool>>? filter = null, bool isTracked = true, string includeProperties = "")
         {
             IQueryable<T> query = _dbSet;
+
             if (!isTracked)
                 query = query.AsNoTracking();
+
             if (filter != null)
                 query = query.Where(filter);
+
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -132,9 +135,9 @@ namespace VisionAiChrono.Infrastructure.Repositories
                     query = query.Include(includeProperty);
                 }
             }
-            return await query.FirstOrDefaultAsync();
-        }
 
+            return await query.FirstOrDefaultAsync(filter);
+        }
         public Task RemoveRangeAsync(IEnumerable<T> model)
         {
             _dbSet.RemoveRange(model);

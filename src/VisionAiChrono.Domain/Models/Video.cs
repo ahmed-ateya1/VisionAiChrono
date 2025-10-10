@@ -4,7 +4,7 @@ namespace VisionAiChrono.Domain.Models
 {
     public class Video
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
         public string Url { get; set; }
         public long SizeInBytes { get; set; }

@@ -72,6 +72,7 @@ namespace VisionAiChrono.Infrastructure
             services.Configure<JwtDTO>(configuration.GetSection("JWT"));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();  
+            services.AddScoped<IUserContext, UserContext>();
             return services;
         }
     }

@@ -2,7 +2,7 @@
 {
     public class PipelineModels
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public Guid PipelineId { get; set; }
         public virtual Pipeline Pipeline { get; set; }
         public Guid AiModelId { get; set; }

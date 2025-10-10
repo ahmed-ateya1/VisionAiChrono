@@ -4,7 +4,7 @@ namespace VisionAiChrono.Domain.Models
 {
     public class Favourite
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public Guid UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
         public Guid PipelineId { get; set; }
