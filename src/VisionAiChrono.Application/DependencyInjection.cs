@@ -14,7 +14,9 @@ namespace VisionAiChrono.Application
             services.AddScoped<IAuthenticationServices,AuthenticationServices>();
             services.AddScoped<IModelService, ModelService>();
             services.AddScoped<IPipelineService, PipelineService>();
-
+            services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<IFileServices,FileService>();
+            services.AddScoped<IVideoService, VideoService>();
             services.AddValidatorsFromAssemblyContaining<AddAiModelValidator>();
             services.AddMediatR(cfg =>
             {

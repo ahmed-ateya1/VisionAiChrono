@@ -309,5 +309,65 @@
             <response code="200">Pipeline deleted successfully.</response>
             <response code="404">Pipeline not found.</response>
         </member>
+        <member name="T:VisionAiChrono.API.Controllers.VideoController">
+            <summary>
+            Controller responsible for managing video-related operations such as adding, retrieving, and deleting videos.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.#ctor(MediatR.ISender,Microsoft.Extensions.Logging.ILogger{VisionAiChrono.API.Controllers.VideoController})">
+            <summary>
+            Controller responsible for managing video-related operations such as adding, retrieving, and deleting videos.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.GetVideoById(System.Guid)">
+            <summary>
+            Retrieves a video by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the video.</param>
+            <returns>An <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> containing the video details if found; otherwise, a not found response.</returns>
+            <response code="200">Returns the video details successfully.</response>
+            <response code="404">Video not found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.GetAllVideos">
+            <summary>
+            Retrieves all videos available in the system.
+            </summary>
+            <returns>An <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> containing a list of videos.</returns>
+            <response code="200">Returns all videos successfully, or an empty list if none exist.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.GetVideosByName(System.String)">
+            <summary>
+            Retrieves videos whose title contains the specified text.
+            </summary>
+            <param name="title">The title or partial title of the video to search for.</param>
+            <returns>An <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> containing a list of matching videos.</returns>
+            <response code="200">Returns matching videos successfully, or an empty list if none are found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.GetVideosByUserId(System.Guid)">
+            <summary>
+            Retrieves all videos uploaded by a specific user.
+            </summary>
+            <param name="userId">The unique identifier of the user.</param>
+            <returns>An <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> containing a list of videos uploaded by the user.</returns>
+            <response code="200">Returns the user's videos successfully, or an empty list if none are found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.AddVideo(VisionAiChrono.Application.Dtos.VideoDtos.VideoAddRequest)">
+            <summary>
+            Adds a new video to the system.
+            </summary>
+            <param name="request">The video data to be added, including title, file, and metadata.</param>
+            <returns>An <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> indicating the result of the operation.</returns>
+            <response code="200">Video added successfully.</response>
+            <response code="500">Failed to add the video due to a server error.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.VideoController.DeleteVideo(System.Guid)">
+            <summary>
+            Deletes a video by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the video to be deleted.</param>
+            <returns>An <see cref="T:VisionAiChrono.Application.Dtos.ApiResponse"/> indicating the result of the deletion operation.</returns>
+            <response code="200">Video deleted successfully.</response>
+            <response code="404">Video not found.</response>
+        </member>
     </members>
 </doc>

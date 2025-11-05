@@ -26,4 +26,8 @@
     <ProjectReference Include="..\VisionAiChrono.Infrastructure\VisionAiChrono.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload\" />
+  </ItemGroup>
+
 </Project>
