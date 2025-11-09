@@ -17,6 +17,11 @@
                 .WithOne(vt => vt.Tag)
                 .HasForeignKey(vt => vt.TagId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(t => t.User)
+                .WithMany(u => u.Tags)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

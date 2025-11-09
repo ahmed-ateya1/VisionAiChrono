@@ -46,9 +46,8 @@ namespace VisionAiChrono.Application.Services
         video.UploadedAt = DateTime.UtcNow;
         video.UserId = user.Id;
 
-        // Get media info
-        //var mediaInfo = await FFmpeg.GetMediaInfo(video.Url);
-        video.Duration = TimeSpan.Zero;
+
+        video.Duration = TimeSpan.MinValue;
 
         await ExecuteWithTransactionAsync(async () =>
         {

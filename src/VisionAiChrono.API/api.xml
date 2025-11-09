@@ -232,6 +232,51 @@
             <response code="200">AI model deleted successfully.</response>
             <response code="404">No AI model found with the specified ID.</response>
         </member>
+        <member name="T:VisionAiChrono.API.Controllers.FavoriteController">
+            <summary>
+            Controller for managing user favorites.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.FavoriteController.#ctor(MediatR.ISender,Microsoft.Extensions.Logging.ILogger{VisionAiChrono.API.Controllers.FavoriteController})">
+            <summary>
+            Controller for managing user favorites.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.FavoriteController.GetFavoriteByIdAsync(System.Guid)">
+            <summary>
+            Retrieves a specific favorite by its unique identifier.
+            </summary>
+            <param name="favoriteId">The unique identifier of the favorite.</param>
+            <returns>An ApiResponse containing the favorite details if found.</returns>
+            <response code="200">Returns the favorite details.</response>
+            <response code="404">If the favorite is not found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.FavoriteController.GetFavoritesByUserIdAsync(System.Guid)">
+            <summary>
+            Retrieves all favorites for a specific user.
+            </summary>
+            <param name="userId">The unique identifier of the user.</param>
+            <returns>An ApiResponse containing a list of the user's favorites.</returns>
+            <response code="200">Returns the list of favorites.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.FavoriteController.AddFavoriteAsync(VisionAiChrono.Application.Dtos.FavoriteDtos.FavoriteAddRequest)">
+            <summary>
+            Adds a new favorite for a user.
+            </summary>
+            <param name="request">The favorite creation request containing user and pipeline identifiers.</param>
+            <returns>An ApiResponse containing the created favorite details.</returns>
+            <response code="200">Returns the created favorite.</response>
+            <response code="400">If the request is invalid.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.FavoriteController.DeleteFavoriteAsync(System.Guid)">
+            <summary>
+            Deletes a favorite by its unique identifier.
+            </summary>
+            <param name="favId">The unique identifier of the favorite to delete.</param>
+            <returns>An ApiResponse indicating the result of the deletion.</returns>
+            <response code="200">If the favorite was successfully deleted.</response>
+            <response code="404">If the favorite is not found.</response>
+        </member>
         <member name="M:VisionAiChrono.API.Controllers.PipelineController.GetPipelines(VisionAiChrono.Application.Dtos.PaginationDto)">
             <summary>
             Retrieves all available pipelines with pagination support.
@@ -308,6 +353,80 @@
             <returns>Success or failure response.</returns>
             <response code="200">Pipeline deleted successfully.</response>
             <response code="404">Pipeline not found.</response>
+        </member>
+        <member name="T:VisionAiChrono.API.Controllers.TagController">
+            <summary>
+            Controller for managing tags and video-tag associations.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.#ctor(MediatR.ISender,Microsoft.Extensions.Logging.ILogger{VisionAiChrono.API.Controllers.TagController})">
+            <summary>
+            Controller for managing tags and video-tag associations.
+            </summary>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.GetAllTags">
+            <summary>
+            Retrieves all tags in the system.
+            </summary>
+            <returns>An ApiResponse containing the list of all tags.</returns>
+            <response code="200">Returns the list of tags.</response>
+            <response code="404">If no tags are found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.GetTagById(System.Guid)">
+            <summary>
+            Retrieves a specific tag by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the tag.</param>
+            <returns>An ApiResponse containing the tag details if found.</returns>
+            <response code="200">Returns the tag details.</response>
+            <response code="404">If the tag is not found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.GetTagByName(System.String)">
+            <summary>
+            Retrieves tags that match the specified name (case-insensitive partial match).
+            </summary>
+            <param name="name">The name or partial name to search for.</param>
+            <returns>An ApiResponse containing the list of matching tags.</returns>
+            <response code="200">Returns the list of matching tags.</response>
+            <response code="404">If no matching tags are found.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.GetTagsByUserId(System.Guid)">
+            <summary>
+            Retrieves all tags created by a specific user.
+            </summary>
+            <param name="userId">The unique identifier of the user.</param>
+            <returns>An ApiResponse containing the list of tags for the specified user.</returns>
+            <response code="200">Returns the list of user's tags.</response>
+            <response code="404">If no tags are found for the user.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.AddTagForVideo(VisionAiChrono.Application.Dtos.VideoTagDtos.VideoTagAddRequest)">
+            <summary>
+            Associates a tag with a video.
+            </summary>
+            <param name="request">The video-tag association request containing video and tag identifiers.</param>
+            <returns>An ApiResponse containing the created video-tag association details.</returns>
+            <response code="200">Returns the created video-tag association.</response>
+            <response code="400">If the request is invalid or the operation fails.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.AddTag(VisionAiChrono.Application.Dtos.TagDtos.TagAddRequest)">
+            <summary>
+            Creates a new tag.
+            </summary>
+            <param name="request">The tag creation request containing tag details.</param>
+            <returns>An ApiResponse containing the created tag details.</returns>
+            <response code="200">Returns the created tag.</response>
+            <response code="400">If the request is invalid or the operation fails.</response>
+            <response code="401">If the user is not authenticated.</response>
+        </member>
+        <member name="M:VisionAiChrono.API.Controllers.TagController.UpdateTag(VisionAiChrono.Application.Dtos.TagDtos.TagUpdateRequest)">
+            <summary>
+            Updates an existing tag.
+            </summary>
+            <param name="request">The tag update request containing the tag identifier and updated details.</param>
+            <returns>An ApiResponse containing the updated tag details.</returns>
+            <response code="200">Returns the updated tag.</response>
+            <response code="400">If the request is invalid or the operation fails.</response>
+            <response code="401">If the user is not authenticated.</response>
         </member>
         <member name="T:VisionAiChrono.API.Controllers.VideoController">
             <summary>

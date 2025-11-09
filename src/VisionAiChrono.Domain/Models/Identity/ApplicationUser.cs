@@ -19,5 +19,6 @@ namespace VisionAiChrono.Domain.Models.Identity
         public virtual ICollection<Pipeline> Pipelines { get; set; } = [];
         public virtual ICollection<Favourite> Favourites { get; set; } = [];
         public virtual ICollection<PipelineRun> PipelineRuns { get; set; } = [];
+        public virtual ICollection<Tag> Tags { get; set; } = [];
     }
 }

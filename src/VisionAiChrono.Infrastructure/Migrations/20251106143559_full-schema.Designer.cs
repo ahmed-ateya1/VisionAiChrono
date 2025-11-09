@@ -12,8 +12,8 @@ using VisionAiChrono.Infrastructure.Data;
 namespace VisionAiChrono.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250929220532_initial-schema")]
-    partial class initialschema
+    [Migration("20251106143559_full-schema")]
+    partial class fullschema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -324,7 +324,7 @@ namespace VisionAiChrono.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BasePipelineId")
+                    b.Property<Guid?>("BasePipelineId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ContentJson")
@@ -465,10 +465,15 @@ namespace VisionAiChrono.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tags");
                 });
@@ -646,8 +651,7 @@ namespace VisionAiChrono.Infrastructure.Migrations
                     b.HasOne("VisionAiChrono.Domain.Models.Pipeline", "BasePipeline")
                         .WithMany("DerivedPipelines")
                         .HasForeignKey("BasePipelineId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("VisionAiChrono.Domain.Models.Identity.ApplicationUser", "User")
                         .WithMany("Pipelines")
@@ -725,6 +729,17 @@ namespace VisionAiChrono.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("VisionAiChrono.Domain.Models.Tag", b =>
+                {
+                    b.HasOne("VisionAiChrono.Domain.Models.Identity.ApplicationUser", "User")
+                        .WithMany("Tags")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("VisionAiChrono.Domain.Models.Video", b =>
                 {
                     b.HasOne("VisionAiChrono.Domain.Models.Identity.ApplicationUser", "User")
@@ -771,6 +786,8 @@ namespace VisionAiChrono.Infrastructure.Migrations
                     b.Navigation("PipelineRuns");
 
                     b.Navigation("Pipelines");
+
+                    b.Navigation("Tags");
 
                     b.Navigation("Videos");
                 });

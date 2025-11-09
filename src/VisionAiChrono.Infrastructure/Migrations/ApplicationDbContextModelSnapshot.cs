@@ -462,10 +462,15 @@ namespace VisionAiChrono.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tags");
                 });
@@ -721,6 +726,17 @@ namespace VisionAiChrono.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("VisionAiChrono.Domain.Models.Tag", b =>
+                {
+                    b.HasOne("VisionAiChrono.Domain.Models.Identity.ApplicationUser", "User")
+                        .WithMany("Tags")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("VisionAiChrono.Domain.Models.Video", b =>
                 {
                     b.HasOne("VisionAiChrono.Domain.Models.Identity.ApplicationUser", "User")
@@ -767,6 +783,8 @@ namespace VisionAiChrono.Infrastructure.Migrations
                     b.Navigation("PipelineRuns");
 
                     b.Navigation("Pipelines");
+
+                    b.Navigation("Tags");
 
                     b.Navigation("Videos");
                 });
