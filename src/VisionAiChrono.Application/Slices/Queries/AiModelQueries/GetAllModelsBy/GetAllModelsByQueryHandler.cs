@@ -2,7 +2,7 @@
 using VisionAiChrono.Application.Dtos.AiModelDtos;
 
 namespace VisionAiChrono.Application.Slices.Queries
-{
+{ 
     public record GetAllModelsByQuery(
         PaginationDto? PaginationDto 
         , Expression<Func<AiModel,bool>> Expression

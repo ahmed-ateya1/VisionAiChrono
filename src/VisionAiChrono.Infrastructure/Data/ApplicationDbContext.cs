@@ -19,6 +19,7 @@ namespace VisionAiChrono.Infrastructure.Data
         public DbSet<Video> Videos { get; set; }
         public DbSet<VideoTag> VideoTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<PipelineRunVideo> PipelineRunVideos { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

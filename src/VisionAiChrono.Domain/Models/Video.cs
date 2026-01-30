@@ -14,5 +14,6 @@ namespace VisionAiChrono.Domain.Models
         public DateTime UploadedAt { get; set; }
         public virtual ICollection<VideoTag> VideoTags { get; set; } = [];
         public virtual ICollection<PipelineResult> PipelineResults { get; set; } = [];
+        public virtual ICollection<PipelineRunVideo> PipelineRunVideos { get; set; } = [];
     }
 }

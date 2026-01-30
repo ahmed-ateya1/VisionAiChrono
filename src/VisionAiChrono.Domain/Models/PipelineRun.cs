@@ -14,5 +14,6 @@ namespace VisionAiChrono.Domain.Models
         public DateTime StartAt { get; set; }
         public DateTime? EndAt { get; set; }
         public virtual ICollection<PipelineResult> PipelineResults { get; set; } = [];
+        public virtual ICollection<PipelineRunVideo> PipelineRunVideos { get; set; } = [];
     }
 }
